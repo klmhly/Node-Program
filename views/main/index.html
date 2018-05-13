@@ -17,11 +17,9 @@
 		<div class="navbar-collapse collapse ">
 			<ul class="nav navbar-nav ">
 				<li class="active" role="presentation"><a href="/">首页</a></li>
-				<li role="presentation"><a href="http://wenda.ghostchina.com">HTML</a></li>
-				<li role="presentation"><a href="/ghost-cheat-sheet/">Css</a></li>
-				<li role="presentation"><a href="http://docs.ghostchina.com/zh/">Javascript</a></li>
-				<li role="presentation"><a href="/download/">Node.js</a></li>
-				<li role="presentation"><a href="/about/">Vue</a></li>
+				{% for category in categories %}
+				<li role="presentation"><a href="">{{category.name}}</a></li>
+				{% endfor %}
 			</ul>
 		</div>
 	</nav>
