@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{%block content%}
+<div class="listBox post-head text-center">
+	<h1>{{content.title}}</h1>
+	<div class="post-meta text-center">
+		<span>作者：<a>{{content.user.username}}</a></span>-
+		<span>时间：<a>{{content.addTime|date('Y/m/d H:i:s',-8*60)}}</a></span>-
+		<span>阅读数：<a>{{content.views}}</a></span>-
+		<span>评论数：<a>{{content.comments.length}}</a></span>
+	</div>
+	<div class="post-content">
+		<p class="text-left">
+			{{content.content}}
+		</p>
+	</div>
+</div>
+
+<div class="listBox">
+
+	{% if userInfo.username %}
+	<div class="p-head">
+		<span class="h-left"><strong>评论</strong></span>
+		<span class="h-right">一共有<em id="messageCount">0</em>条评论</span>
+	</div>
+
+	<p>
+		murphy
+		<input id="contentId" type="hidden" value="{{content._id.toString()}}">
+	</p>
+	<div class="pinglun input-group">
+		<textarea type="text" id="messageContent" class="form-control"></textarea>
+		<span class="input-group-btn">
+        <button class="btn btn-info" id="messageBtn" type="button">评论</button>
+      </span>
+	</div>
+	<div class="messageList">
+	</div>
+	<ul class="pager">
+		<li class="previous">
+			<a href="">上一页</a>
+		</li>
+		<li></li>
+		<li class="next">
+			<a href="">下一页</a>
+		</li>
+	</ul>
+	{% else %}
+	<p class="bg-warning text-center" style="line-height: 30px">你还没有登录，请先登录</p>
+	{% endif %}
+
+
+
+</div>
+
+<script src="/public/js/comment.js"></script>
+{%endblock%}

@@ -3,7 +3,6 @@ var router = express.Router();
 var User = require('../models/User');
 var Category = require('../models/Category');
 var Content = require('../models/Content');
-
 router.use(function (req,res,next) {
     if(!req.userInfo.isAdmin){
         res.send('对不起，只有管理员才可以进入后台管理');
@@ -131,7 +130,6 @@ router.get('/category/add',function (req,res) {
  * 分类的保存
  */
 router.post('/category/add',function (req,res) {
-    console.log(req.body);
     var name = req.body.name || '';
     if(name == ''){
         res.render('admin/error',{
@@ -288,8 +286,8 @@ router.get('/content',function (req,res) {
          * 1:按时间升序
          * -1：按时间降序
          */
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function (contents) {
-            console.log(contents)
+        Content.find().sort({addTime:-1}).limit(limit).skip(skip).populate(['category','user']).then(function (contents) {
+            // console.log(contents)
             res.render('admin/content_index',{
                 userInfo:req.userInfo,
                 contents :contents,
@@ -319,7 +317,6 @@ router.get('/content/add',function (req,res) {
  * 内容保存
  */
 router.post('/content/add',function (req,res) {
-    console.log(req.body);
     if(req.body.category == ''){
         res.render('admin/error',{
             userInfo :req.userInfo,
@@ -338,6 +335,7 @@ router.post('/content/add',function (req,res) {
     new Content({
         category:req.body.category,
         title:req.body.title,
+        user:req.userInfo._id.toString(),
         description:req.body.description,
         content:req.body.content
     }).save().then(function (rs) {
@@ -350,11 +348,16 @@ router.post('/content/add',function (req,res) {
 
 /**
  * 修改内容
+ * .populate('category')会把category关联的数据页获取
  */
 router.get('/content/edit',function (req,res) {
     var id = req.query.id || '';
-    Content.find({
-        _id:id
+    var categories = [];
+    Category.find().sort({_id:-1}).then(function (rs) {
+        categories=rs;
+        return Content.findOne({
+            _id:id
+        }).populate('category');
     }).then(function (content) {
         if(!content){
             res.render('admin/error' ,{
@@ -365,11 +368,64 @@ router.get('/content/edit',function (req,res) {
         }else{
             res.render('admin/content_edit',{
                 userInfo : req.userInfo,
-                content :content
+                content :content,
+                categories:categories
             })
+            console.log(content);
         }
     })
 });
 
+/**
+ * 保存修改的内容
+ */
+router.post('/content/edit',function (req,res) {
+    var id = req.query.id || '';
+    if(req.body.category == ''){
+        res.render('admin/error',{
+            userInfo :req.userInfo,
+            message:'文章分类不能为空'
+        })
+        return;
+    }
+    if(req.body.title==''){
+        res.render('admin/error',{
+            userInfo :req.userInfo,
+            message:'文章标题不能为空'
+        })
+        return;
+    }
+    Content.update({
+        _id:id
+    },{
+        category:req.body.category,
+        title:req.body.title,
+        description:req.body.description,
+        content:req.body.content
+    }).then(function (value) {
+        res.render('admin/success',{
+            userInfo :req.userInfo,
+            message:'内容保存成功',
+            url:'/admin/content'
+            // url:'/admin/content/edit?id='+id
+        })
+    })
+})
+
+/**
+ * 内容删除
+ */
+router.get('/content/delete',function(req,res){
+    var id = req.query.id || '';
+    Content.remove({
+        _id:id
+    }).then(function () {
+        res.render('admin/success',{
+            userInfo:req.userInfo,
+            message:'删除成功',
+            url:'/admin/content'
+        })
+    })
+})
 
 module.exports = router;

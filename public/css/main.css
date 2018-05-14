@@ -8,8 +8,13 @@ a{
 }
 span{
     font-size: 16px;
+    color: #333333;
 }
-
+p{
+    font-family: 微软雅黑;
+    font-size: 16px;
+    color:#333333;
+}
 .main-header{
     height:300px;
     background-repeat: no-repeat;
@@ -50,15 +55,59 @@ article{
     position: relative;
     overflow: hidden;
 }
+.listBox{
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 35px;
+}
+.p-head{
+    height: 30px;
+}
+.pin-head{
+    height: 20px;
+    margin-bottom: 2px;
+}
+.h-left{
+    display: inline-block;
+    float: left;
+}
+.h-right{
+    display: inline-block;
+    float: right;
+}
+.pinglun{
+    margin-bottom: 20px;
+}
+.pinglun textarea{
+    height:70px;
+    resize: none;
+}
+.pinglun button{
+    height:70px;
+}
+.messageBox{
+    margin-bottom: 20px;
+}
+.pager{
+    background-color: white;
+    padding: 3px;
+}
 
+.pager li a{
+    border :none;
+}
+
+.pager li span{
+    border :none;
+}
 .post-content{
     margin-top: 20px;
 }
-p{
-    font-size: 20px;
-    font-family: 微软雅黑;
-    color: #999999;
-}
+/*p{*/
+    /*font-size: 20px;*/
+    /*font-family: 微软雅黑;*/
+    /*color: #999999;*/
+/*}*/
 
 .info{
     background-color: white;
