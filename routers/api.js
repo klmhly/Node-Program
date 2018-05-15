@@ -1,3 +1,14 @@
+/**
+ * 用来处理所有前端的AJAX请求
+ * @type {*|createApplication}
+ *
+ * @1，用户注册
+ * @2，用户登录
+ * @3，退出
+ * @4，获取指定文章的所有评论
+ * @5，提交评论
+ */
+
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User.js');
@@ -76,6 +87,7 @@ router.post('/user/register',function (req,res,next) {
     // next();
 });
 
+//登录
 router.post('/user/login',function (req,res) {
     var username = req.body.username;
     var password = req.body.password;

@@ -3,6 +3,7 @@ var router = express.Router();
 var Category = require('../models/Category');
 var Content = require('../models/Content');
 var data;
+var markdown = require('markdown-js');
 /**
  * 处理通用数据
  */
@@ -45,16 +46,20 @@ router.get('/',function (req,res,next){
         //通过where来控制对应类别显示对应的文章
         return Content.where(where).find().limit(data.limit).skip(skip).populate(['category','user']).sort({addTime:-1});
     }).then(function (contents) {
+       
         data.contents = contents;
         res.render('main/index',data)
     });
 });
 
+
+//阅读全文
 router.get('/view',function (req,res) {
     var contentId = req.query.contentid||'';
     Content.findOne({
         _id:contentId
     }).then(function(content){
+        console.log(content);
         data.content = content;
         //更新阅读数
         content.views++;

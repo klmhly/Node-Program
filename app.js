@@ -38,7 +38,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 //设置cookies
 app.use(function (req,res,next) {
     req.cookies = new Cookies(req,res);
-
     //解析登录用户的cookies信息,保存在req.userInfo这个全局对象中
     req.userInfo = {};
     if(req.cookies.get('userInfo')){
