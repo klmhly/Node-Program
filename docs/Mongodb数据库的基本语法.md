@@ -1,11 +1,15 @@
 ## 一、连接数据库
 >注意：要想正常使用mongodb数据库，有以下三个步骤
+
 **1. 安装mongodb数据库**
+
 **2. 在命令行开启mongodb服务**
+
 **3. 应用程序连接数据库**
 
 **1. 安装mongodb数据库**
 **安装mongodb数据库，在官网下载，假设安装到 D：\MongoDB,如下所示是，安装好的所有文件**
+
 ![image.png](https://upload-images.jianshu.io/upload_images/11152416-c0074eb9bbdd09c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **2. 在命令行开启mongodb服务**
