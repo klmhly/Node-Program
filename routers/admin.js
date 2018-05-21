@@ -348,7 +348,7 @@ router.post('/content/add',function (req,res) {
 
 /**
  * 修改内容
- * .populate('category')会把category关联的数据页获取
+ * .populate('category')会把category关联的数据也获取
  */
 router.get('/content/edit',function (req,res) {
     var id = req.query.id || '';
