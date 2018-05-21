@@ -281,6 +281,7 @@ req.query.contentid
 ## 八、附件
 
 **图1，npm init 初始化结果**
+
 ![image](http://upload-images.jianshu.io/upload_images/11152416-fd6e1bb737afa7fb?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
 
 **图2，项目的目录结构**
