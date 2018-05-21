@@ -25,6 +25,7 @@ npm install bodyParser
 npm install cookies
 ```
 **4，目录结构**
+
 ![image.png](https://upload-images.jianshu.io/upload_images/11152416-4e96fe4fb124aec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -90,9 +91,11 @@ app.use('/api',require('./routers/api'));
 ## 三、路由以及整体规划
 
 **1，前台路由+模版**
+
 ![](https://upload-images.jianshu.io/upload_images/11152416-1dbe262551f2ffb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **2，后台路由+模版**
+
 ![image.png](https://upload-images.jianshu.io/upload_images/11152416-6286fc16a83186ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **3，功能开发顺序**
